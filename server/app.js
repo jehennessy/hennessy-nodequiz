@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, '../dist/nodequiz')));
 app.use('/', express.static(path.join(__dirname, '../dist/nodequiz')));
 
 // Global variables
-const port = process.env.PORT || 3000;
+const serverPort = process.env.PORT || 3000;
 
 /************************* Mongoose connection strings go below this line  ***************/
 const connString = 'mongodb+srv://admin:hasbyw-mudta2-sakZab@nodequiz-j6vwb.mongodb.net/NodeQuiz?retryWrites=true&w=majority'
