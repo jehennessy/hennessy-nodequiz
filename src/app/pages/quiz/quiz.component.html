@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-content *ngIf="quiz.question">
+
+    <form #quizForm="ngForm" (ngSubmit)="onSubmit(quizForm.value); quizForm.reset();">
+      <div *ngFor="let question of quiz.question">
+        <div>
+          <mat-card class="mat-elevation-z8">
+            <mat-card-content>
+              <div fxLayout="column">
+                <mat-list>
+                  <div fxLayout="row">
+                    <h3>Question {{question.content}}</h3>
+                  </div>
+                </mat-list>
+                <br />
+
+                <div fxLayout="row" ngModelGroup="quiz">
+                  <label for="Answers:">Select One</label>
+                  <div fxLayout="column">
+                    <div *ngFor="let answer of question.answer">
+                      <input [(ngModel)]="question[question.id]" [checked]="question[question.id]" value="{{answer.id}};{{answer.correct}}" name="question{{question.id}}" type="radio">
+                      {{answer.content}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <mat-card-actions>
+        <button type="submit" fxFlex mat-raised-button>Submit</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+
+</mat-card>
+
+
