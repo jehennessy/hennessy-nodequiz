@@ -27,7 +27,7 @@
           </div>
         </div>
         <div *ngFor="let answer of correctAnswers; let i = index">
-          <div *ngIf="selectedAnswer[i].answerId !== answer.answerId">
+          <div *ngIf="selectedAnswers[i].answerId !== answer.answerId">
 
             <mat-list>
               <div>
@@ -37,7 +37,7 @@
             </mat-list>
 
             <h3>Answers:</h3>
-            <p><mat-icon>clear</mat-icon> Selected answer: {{ selectedAnswer[i].text }}</p>
+            <p><mat-icon>clear</mat-icon> Selected answer: {{ selectedAnswers[i].text }}</p>
             <p><mat-icon>done</mat-icon> Correct answer: {{ answer.text }}</p>
           </div>
         </div>
