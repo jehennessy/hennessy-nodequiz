@@ -1,6 +1,6 @@
 <mat-card>
-  <mat-card-content *ngIf="quiz.question">
-
+  <mat-card-content *ngIf="quiz">
+    <h2>{{quiz.name}} Quiz</h2>
     <form #quizForm="ngForm" (ngSubmit)="onSubmit(quizForm.value); quizForm.reset();">
       <div *ngFor="let question of quiz.question">
         <div>
@@ -18,7 +18,11 @@
                   <label for="Answers:">Select One</label>
                   <div fxLayout="column">
                     <div *ngFor="let answer of question.answer">
-                      <input [(ngModel)]="question[question.id]" [checked]="question[question.id]" value="{{answer.id}};{{answer.correct}}" name="question{{question.id}}" type="radio">
+                      <input [(ngModel)]="qs[question._id]"
+                      [checked]="qs[question._id]"
+                      value="{{answer._id}};{{answer.content}};{{answer.correct}}"
+                      name="question{{question._id}}"
+                      type="radio" />
                       {{answer.content}}
                     </div>
                   </div>

@@ -12,13 +12,13 @@
             </button>
 
             <button mat-button class="toolbar__icon-button mat-button">
-              <a routerLink="/cumulative-summary" class="nav-link"><mat-icon>assessment</mat-icon> Cumulative Summary</a>
+              <a routerLink="/dashboard/cumulative-summary" class="nav-link"><mat-icon>assessment</mat-icon> Cumulative Summary</a>
             </button>
 
             <div fxFlex></div>
 
             <button mat-button class="toolbar__icon-button mat-button">
-              <a routerLink="/session/login" class="nav-link"><mat-icon>person</mat-icon> Logout</a>
+              <a (click)="logout()" class="nav-link"><mat-icon>person</mat-icon> Logout</a>
             </button>
           </mat-toolbar-row>
         </mat-toolbar>

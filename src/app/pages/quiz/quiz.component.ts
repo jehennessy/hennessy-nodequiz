@@ -8,14 +8,14 @@
 ;===========================================
 */
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { QuizResultDialogComponent } from '../quiz-result-dialog/quiz-result-dialog.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-//import * as moment from 'moment';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { Location } from '@angular/common';
+import * as moment from 'moment';
 
 
 @Component({
@@ -25,20 +25,29 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class QuizComponent implements OnInit {
 
-  quizId: number;
-  employeeId: number;
+  quizId: string;
+  employeeId: string;
   quiz: any;
   quizResults: any;
+  qs: any = [];
   question: any = [];
   quizSummary: any = [];
+  cumulativeSummaryObject: object;
+  quizScore: any;
+  quizName: any;
+  form: FormGroup;
+
+
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private cookieService: CookieService,
+              private dialog: MatDialog,
               private location: Location,
-              private dialog: MatDialog) {
-    this.quizId = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.employeeId = parseInt(this.cookieService.get('employeeId'), 10);
+              private router: Router,
+              private fb: FormBuilder) {
+    this.quizId = route.snapshot.paramMap.get('id');
+    this.employeeId = this.cookieService.get('employeeId');
 
 
     this.http.get('/api/quiz/' + this.quizId).subscribe(res => {
@@ -51,6 +60,10 @@ export class QuizComponent implements OnInit {
   ngOnInit() {
   }
 
+  goBack() {
+    this.location.back();
+  }
+
   onSubmit(form) {
     // Variables for calculating score
     const totalPossiblePoints = 100;
@@ -61,14 +74,19 @@ export class QuizComponent implements OnInit {
     // Variables for determining the users selection
     let correctRunningTotal = 0;
     let selectedAnswerIds = [];
-    let selectedCorrectProp = [];
+    let selectedCorrect = [];
+
+
+
 
     // Form data
     this.quizResults = form;
     this.quizResults['employeeId'] = this.employeeId;
     this.quizResults['quizId'] = this.quizId;
 
-    this.http.post('/api/quiz/' + this.quizId + '/quiz-results', {
+
+    // Save results to database
+    this.http.post('/api/results', {
       employeeId: this.employeeId,
       quizId: this.quizId,
       result: JSON.stringify(form)
@@ -85,18 +103,18 @@ export class QuizComponent implements OnInit {
       if (this.quizResults.hasOwnProperty(prop)) {
         if(prop !== 'employeeId' && prop !== 'quizId') {
           selectedAnswerIds.push(this.quizResults[prop].split(';')[0]);
-          selectedCorrectProp.push(this.quizResults[prop].split(';')[1]);
+          selectedCorrect.push(this.quizResults[prop].split(';')[1]);
         }
       }
     }
 
     // determine the quiz score
-    for (let x = 0; x < selectedCorrectProp.length; x++) {
-      if (selectedCorrectProp[x] === 'true') {
+    for (let x = 0; x < selectedCorrect.length; x++) {
+      if (selectedCorrect[x] === 'true') {
         correctRunningTotal += 1;
       }
     }
-    quizScore = correctRunningTotal = pointsPerQuestion;
+    quizScore = correctRunningTotal * pointsPerQuestion;
 
     //Create the QuizSummary object for the dialog
     let correctAnswers = [];
@@ -132,7 +150,7 @@ export class QuizComponent implements OnInit {
     this.quizSummary['score'] = quizScore;
     this.quizSummary['correctAnswers'] = correctAnswers;
     this.quizSummary['selectedAnswers'] = selectedAnswers;
-/*
+
     // Create the cumulative summary object and insert into the database
     this.cumulativeSummaryObject = {
       employeeId: this.employeeId,
@@ -141,8 +159,14 @@ export class QuizComponent implements OnInit {
       dateTaken: moment().format('MM/DD/YYYY'),
       score: (correctRunningTotal * pointsPerQuestion)
     };
-*/
-    this.http.post('/api/results', {}).subscribe(res => {
+
+    this.http.post('/api/summary', {
+      employeeId: this.cumulativeSummaryObject['employeeId'],
+      quizId: this.cumulativeSummaryObject['quizId'],
+      quizName: this.cumulativeSummaryObject['quizName'],
+      dateTaken: this.cumulativeSummaryObject['dateTaken'],
+      score: this.cumulativeSummaryObject['score']
+    }).subscribe(res => {
 
     });
 
@@ -155,11 +179,11 @@ export class QuizComponent implements OnInit {
       width: '800px'
     });
 
-   /* dialogRef.afterClosed().subscribe(result => {
+   dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
         this.router.navigate(['/']);
       }
     });
-*/
+
   }
 }

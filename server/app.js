@@ -15,6 +15,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const Employee = require('./models/employee');
 const Quiz = require('./models/quiz');
+const Results = require('./models/quiz-results');
+const Summary = require('./models/summary');
 
 let app = express();
 
@@ -73,6 +75,46 @@ app.get('/api/quiz/:id', function(req, res, next) {
       res.json(quiz);
     }
   })
+});
+
+// Post quiz results
+app.post('/api/results', function(req, res, next) {
+  const result = {
+    employeeId: req.body.employeeId,
+    quizId: req.body.quizId,
+    result: req.body.result
+  };
+
+  Results.create(result, function(err, results) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(results);
+      res.json(results);
+    }
+  });
+});
+
+// Post Summary Results
+app.post('/api/summary', function(req, res, next) {
+  const summary = {
+    employeeId: req.body.employeeId,
+    quizId: req.body.quizId,
+    quizName: req.body.quizName,
+    dateTaken: req.body.dateTaken,
+    score: req.body.score
+  };
+
+  Summary.create(summary, function(err, summaries) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(summaries);
+      res.json(summaries);
+    }
+  });
 });
 
 /**

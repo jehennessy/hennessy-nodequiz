@@ -40,7 +40,7 @@ export class PresentationComponent implements OnInit {
   ]
 
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.presentationId = parseInt(this.route.snapshot.paramMap.get('id'));
 
     if (this.presentationId === 101) {
@@ -58,4 +58,7 @@ export class PresentationComponent implements OnInit {
   ngOnInit() {
   }
 
+  takeQuiz(id) {
+    this.router.navigateByUrl('/dashboard/quiz/' + id);
+  }
 }

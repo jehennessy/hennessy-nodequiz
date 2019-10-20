@@ -1,1 +1,50 @@
-<p>quiz-result-dialog works!</p>
+<mat-dialog-content>
+  <div>
+    <mat-card class="mat-elevation-z0">
+      <mat-card-title>
+        {{quiz.Summary.quizName}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        Quiz Results for {{employeeId}}
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div>
+          <h3>Score</h3>
+          <div *ngIf="quizSummary.score > 90">
+            <span>{{quizSummary.score}}%</span>
+          </div>
+          <div *ngIf="quizSummary.score < 90 && quizSummary.score >= 80">
+            <span>{{quizSummary.score}}%</span>
+          </div>
+          <div *ngIf="quizSummary.score < 80 && quizSummary.score >= 70">
+            <span>{{quizSummary.score}}%</span>
+          </div>
+          <div *ngIf="quizSummary.score < 70 && quizSummary.score >= 60">
+            <span>{{quizSummary.score}}%</span>
+          </div>
+          <div *ngIf="quizSummary.score < 60">
+            <span>{{quizSummary.score}}%</span>
+          </div>
+        </div>
+        <div *ngFor="let answer of correctAnswers; let i = index">
+          <div *ngIf="selectedAnswer[i].answerId !== answer.answerId">
+
+            <mat-list>
+              <div>
+                <h3>Question:</h3>
+                <p>{{answer.questionContent</p>
+              </div>
+            </mat-list>
+
+            <h3>Answers:</h3>
+            <p><mat-icon>clear</mat-icon> Selected answer: {{ selectedAnswer[i].text }}</p>
+            <p><mat-icon>done</mat-icon> Correct answer: {{ answer.text }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button matDialogClose="confirm">Confirm</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</mat-dialog-content>

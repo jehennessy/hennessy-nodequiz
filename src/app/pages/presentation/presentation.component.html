@@ -15,7 +15,7 @@
         </p-carousel>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button color="accent" routerLink="dashboard/quiz/{{presentationId}}">Take Quiz</button>
+        <button mat-flat-button color="accent" (click)="takeQuiz(presentationId)">Take Quiz</button>
       </mat-card-actions>
     </mat-card>
   </div>
