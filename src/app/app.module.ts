@@ -23,7 +23,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CumulativeSummaryComponent } from './pages/cumulative-summary/cumulative-summary.component';
 
-import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatCardModule, MatCard, MatListModule, MatDialogModule, MatRadioModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatCardModule, MatCard, MatListModule, MatDialogModule, MatRadioModule, MatTableModule, MatTableDataSource } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -67,12 +67,13 @@ import { QuizResultDialogComponent } from './pages/quiz-result-dialog/quiz-resul
     MatListModule,
     MatDialogModule,
     MatRadioModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [{
     provide: LocationStrategy, useClass: HashLocationStrategy},
     AuthGuard, CookieService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [QuizResultDialogComponent]
 })
 export class AppModule { }

@@ -8,6 +8,10 @@
 ;===========================================
 */
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-cumulative-summary',
@@ -16,7 +20,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CumulativeSummaryComponent implements OnInit {
 
-  constructor() { }
+  summaries: any;
+  employeeId: any;
+  quizName: any;
+  dateTaken: any;
+  score: any;
+
+
+
+  constructor(private http: HttpClient) {
+
+    this.http.get('/api/summary/').subscribe( res => {
+      console.log(res);
+      this.summaries = (res);
+
+   })
+
+  }
 
   ngOnInit() {
   }

@@ -117,6 +117,18 @@ app.post('/api/summary', function(req, res, next) {
   });
 });
 
+// Get summaries
+app.get('/api/summary/', function(req, res, next) {
+  Summary.find({}, function(err, summaries) {
+    if(err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(summaries);
+      res.json(summaries);
+    }
+  })
+});
 /**
  * Creates an express server and listens on port 3000
  */

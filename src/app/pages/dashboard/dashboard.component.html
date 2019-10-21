@@ -2,15 +2,15 @@
   <h1>Select a Quiz</h1>
 </div>
 
-<div fxLayout>
-  <div *ngFor="let quiz of quizzes">
-    <mat-card fxFlex="30%">
+<div fxLayout style="margin: auto">
+  <div *ngFor="let quiz of quizzes" fxFlex="column" fxLayoutGap="5px">
+    <mat-card>
       <mat-card-header>
         <mat-card-title>{{quiz.name}}</mat-card-title>
       </mat-card-header>
       <img mat-card-image src="../../../assets/images/{{quiz.image}}" alt="Laptop and HTML & CSS book">
       <mat-card-actions>
-        <button mat-flat-button color="accent" routerLink="presentation/{{quiz.id}}">View Presentation</button>
+        <button mat-flat-button color="accent" routerLink="presentation/{{quiz.id}}" style="width: 100%; margin: auto;">View Presentation</button>
       </mat-card-actions>
     </mat-card>
   </div>

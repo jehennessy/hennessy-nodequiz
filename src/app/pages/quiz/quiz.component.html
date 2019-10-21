@@ -1,10 +1,10 @@
 <mat-card>
   <mat-card-content *ngIf="quiz">
-    <h2>{{quiz.name}} Quiz</h2>
+    <h2 style="text-align: center;">{{quiz.name}} Quiz</h2>
     <form #quizForm="ngForm" (ngSubmit)="onSubmit(quizForm.value); quizForm.reset();">
       <div *ngFor="let question of quiz.question">
         <div>
-          <mat-card class="mat-elevation-z8">
+          <mat-card class="mat-elevation-z8" style="width: 80%;">
             <mat-card-content>
               <div fxLayout="column">
                 <mat-list>
@@ -15,15 +15,15 @@
                 <br />
 
                 <div fxLayout="row" ngModelGroup="quiz">
-                  <label for="Answers:">Select One</label>
-                  <div fxLayout="column">
+                  <div fxLayout="column" fxLayoutGap="10px">
                     <div *ngFor="let answer of question.answer">
                       <input [(ngModel)]="qs[question._id]"
                       [checked]="qs[question._id]"
                       value="{{answer._id}};{{answer.content}};{{answer.correct}}"
-                      name="question{{question._id}}"
+                      name="q{{question._id}}"
                       type="radio" />
                       {{answer.content}}
+                      <br />
                     </div>
                   </div>
                 </div>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <mat-card-actions>
-        <button type="submit" fxFlex mat-raised-button>Submit</button>
+        <button type="submit" fxFlex mat-raised-button color="accent">Submit</button>
       </mat-card-actions>
     </form>
   </mat-card-content>

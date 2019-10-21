@@ -316,7 +316,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>cumulative-summary works!</p>\n"
+module.exports = "<div>\n  <mat-card>\n    <mat-card-title style=\"text-align: center;\">\n      Cumulative Summary\n    </mat-card-title>\n    <table *ngIf=\"summaries\" style=\"width: 90%; margin: auto; display: block;\">\n      <tr color=\"accent\">\n        <th>Employee Id</th>\n        <th>Quiz Name</th>\n        <th>Date Taken</th>\n        <th>Score</th>\n      </tr>\n      <tr *ngFor=\"let summary of summaries\">\n        <td>{{summary.employeeId}}</td>\n        <td>{{summary.quizName}}</td>\n        <td>{{summary.dateTaken}}</td>\n        <td>{{summary.score}}</td>\n      </tr>\n    </table>\n  </mat-card>\n</div>\n"
 
 /***/ }),
 
@@ -327,7 +327,7 @@ module.exports = "<p>cumulative-summary works!</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <h1>Select a Quiz</h1>\n</div>\n\n<div fxLayout>\n  <div *ngFor=\"let quiz of quizzes\">\n    <mat-card fxFlex=\"30%\">\n      <mat-card-header>\n        <mat-card-title>{{quiz.name}}</mat-card-title>\n      </mat-card-header>\n      <img mat-card-image src=\"../../../assets/images/{{quiz.image}}\" alt=\"Laptop and HTML & CSS book\">\n      <mat-card-actions>\n        <button mat-flat-button color=\"accent\" routerLink=\"presentation/{{quiz.id}}\">View Presentation</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n\n</div>\n"
+module.exports = "<div>\n  <h1>Select a Quiz</h1>\n</div>\n\n<div fxLayout style=\"margin: auto\">\n  <div *ngFor=\"let quiz of quizzes\" fxFlex=\"column\" fxLayoutGap=\"5px\">\n    <mat-card>\n      <mat-card-header>\n        <mat-card-title>{{quiz.name}}</mat-card-title>\n      </mat-card-header>\n      <img mat-card-image src=\"../../../assets/images/{{quiz.image}}\" alt=\"Laptop and HTML & CSS book\">\n      <mat-card-actions>\n        <button mat-flat-button color=\"accent\" routerLink=\"presentation/{{quiz.id}}\" style=\"width: 100%; margin: auto;\">View Presentation</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -338,7 +338,7 @@ module.exports = "<div>\n  <h1>Select a Quiz</h1>\n</div>\n\n<div fxLayout>\n  <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxLayout=\"column\">\n    <mat-card fxFlex>\n      <mat-card-header>\n        <mat-card-title>Employee Login</mat-card-title>\n        <mat-card-subtitle>Please enter your employee ID to enter NodeQuiz.</mat-card-subtitle>\n      </mat-card-header>\n\n\n      <mat-card-content>\n        <small *ngIf=\"form.controls['employeeId'].hasError('required') && form.controls['employeeId'].touched\" class=\"form-error\">Employee ID is required!</small>\n        <small *ngIf=\"form.controls['employeeId'].hasError('pattern') && form.controls['employeeId'].touched\" class=\"form-error\">Employee ID must be an integer value!</small>\n        <small *ngIf=\"errorMessage\">{{errorMessage}}</small>\n\n        <br />\n\n        <form [formGroup]=\"form\" (ngSubmit)=\"login()\">\n          <mat-form-field>\n            <input type=\"text\" matInput [formControl]=\"form.controls['employeeId']\" placeholder=\"Enter your employee ID\">\n          </mat-form-field>\n          <mat-card-actions>\n            <button type=\"submit\">Login</button>\n          </mat-card-actions>\n        </form>\n\n      </mat-card-content>\n    </mat-card>\n</div>\n"
+module.exports = "<div fxLayout=\"column\">\n    <mat-card fxFlex>\n      <mat-card-header>\n        <mat-card-title>Employee Login</mat-card-title>\n        <mat-card-subtitle>Please enter your employee ID to enter NodeQuiz.</mat-card-subtitle>\n      </mat-card-header>\n\n\n      <mat-card-content>\n        <small *ngIf=\"form.controls['employeeId'].hasError('required') && form.controls['employeeId'].touched\" class=\"form-error\">Employee ID is required!</small>\n        <small *ngIf=\"form.controls['employeeId'].hasError('pattern') && form.controls['employeeId'].touched\" class=\"form-error\">Employee ID must be an integer value!</small>\n        <small *ngIf=\"errorMessage\">{{errorMessage}}</small>\n\n        <br />\n\n        <form [formGroup]=\"form\" (ngSubmit)=\"login()\">\n          <mat-form-field>\n            <input type=\"text\" matInput [formControl]=\"form.controls['employeeId']\" placeholder=\"Enter your employee ID\">\n          </mat-form-field>\n          <mat-card-actions>\n            <button type=\"submit\" mat-raised-button color=\"accent\">Login</button>\n          </mat-card-actions>\n        </form>\n\n      </mat-card-content>\n    </mat-card>\n</div>\n"
 
 /***/ }),
 
@@ -349,7 +349,7 @@ module.exports = "<div fxLayout=\"column\">\n    <mat-card fxFlex>\n      <mat-c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>not-found works!</p>\n"
+module.exports = "<h3 style=\"margin: 100px auto 50px; font-size: 42px; text-align: center; width: 40%; display: block;\">\n  Opps! You Ended Up In The Wrong Place!\n</h3>\n<button mat-flat-button color=\"accent\" routerLink=\"/session/login\" style=\"width: 40%; margin: auto; display: block;\">Login</button>\n"
 
 /***/ }),
 
@@ -360,7 +360,7 @@ module.exports = "<p>not-found works!</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n    <mat-card class=\"mat-elevation-z8\">\n      <mat-card-header>\n        <mat-card-title>\n          {{quizName}}\n        </mat-card-title>\n      </mat-card-header>\n      <mat-card-content>\n        <p-carousel [value]=\"slideImages\" numVisible=\"1\">\n          <ng-template let-item pTemplate=\"item\">\n            <div>\n                <img src=\"../../../assets/slides/{{presentation}}{{item.image}}\">\n            </div>\n          </ng-template>\n        </p-carousel>\n      </mat-card-content>\n      <mat-card-actions>\n        <button mat-flat-button color=\"accent\" (click)=\"takeQuiz(presentationId)\">Take Quiz</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n"
+module.exports = "<div>\n    <mat-card class=\"mat-elevation-z8\">\n      <mat-card-header>\n        <mat-card-title style=\"text-align: center;\">\n          {{quizName}}\n        </mat-card-title>\n      </mat-card-header>\n      <mat-card-content>\n        <p-carousel [value]=\"slideImages\" numVisible=\"1\">\n          <ng-template let-item pTemplate=\"item\">\n            <div>\n                <img src=\"../../../assets/slides/{{presentation}}{{item.image}}\" style=\"margin: auto; display: block;\">\n            </div>\n          </ng-template>\n        </p-carousel>\n      </mat-card-content>\n      <mat-card-actions>\n        <button mat-flat-button color=\"accent\" (click)=\"takeQuiz(presentationId)\" style=\"width: 100%; margin: auto;\">Take Quiz</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n"
 
 /***/ }),
 
@@ -371,7 +371,7 @@ module.exports = "<div>\n    <mat-card class=\"mat-elevation-z8\">\n      <mat-c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-dialog-content>\n  <div>\n    <mat-card class=\"mat-elevation-z0\">\n      <mat-card-title>\n        {{quiz.Summary.quizName}}\n      </mat-card-title>\n      <mat-card-subtitle>\n        Quiz Results for {{employeeId}}\n      </mat-card-subtitle>\n      <mat-card-content>\n        <div>\n          <h3>Score</h3>\n          <div *ngIf=\"quizSummary.score > 90\">\n            <span>{{quizSummary.score}}%</span>\n          </div>\n          <div *ngIf=\"quizSummary.score < 90 && quizSummary.score >= 80\">\n            <span>{{quizSummary.score}}%</span>\n          </div>\n          <div *ngIf=\"quizSummary.score < 80 && quizSummary.score >= 70\">\n            <span>{{quizSummary.score}}%</span>\n          </div>\n          <div *ngIf=\"quizSummary.score < 70 && quizSummary.score >= 60\">\n            <span>{{quizSummary.score}}%</span>\n          </div>\n          <div *ngIf=\"quizSummary.score < 60\">\n            <span>{{quizSummary.score}}%</span>\n          </div>\n        </div>\n        <div *ngFor=\"let answer of correctAnswers; let i = index\">\n          <div *ngIf=\"selectedAnswer[i].answerId !== answer.answerId\">\n\n            <mat-list>\n              <div>\n                <h3>Question:</h3>\n                <p>{{answer.questionContent</p>\n              </div>\n            </mat-list>\n\n            <h3>Answers:</h3>\n            <p><mat-icon>clear</mat-icon> Selected answer: {{ selectedAnswer[i].text }}</p>\n            <p><mat-icon>done</mat-icon> Correct answer: {{ answer.text }}</p>\n          </div>\n        </div>\n      </mat-card-content>\n      <mat-card-actions>\n        <button mat-raised-button matDialogClose=\"confirm\">Confirm</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n</mat-dialog-content>\n"
+module.exports = "<mat-dialog-content>\n  <div>\n    <mat-card class=\"mat-elevation-z0\">\n      <mat-card-title>{{quizSummary.quizName}}</mat-card-title>\n      <mat-card-subtitle>Quiz taken by {{employeeId}}</mat-card-subtitle>\n      <mat-card-content>\n        <div>\n          <h3>Score</h3>\n          <div *ngIf=\"quizSummary.score > 90\">\n            <span style=\"color: #4CAF50\">{{quizSummary.score}}%</span>\n          </div>\n          <div *ngIf=\"quizSummary.score < 90 && quizSummary.score >= 80\">\n            <span style=\"color: #8BC34A\">{{quizSummary.score}}%</span>\n          </div>\n          <div *ngIf=\"quizSummary.score < 80 && quizSummary.score >= 70\">\n            <span style=\"color: #FFEB3B\">{{quizSummary.score}}%</span>\n          </div>\n          <div *ngIf=\"quizSummary.score < 70 && quizSummary.score >= 60\">\n            <span style=\"color: #FF9800\">{{quizSummary.score}}%</span>\n          </div>\n          <div *ngIf=\"quizSummary.score < 60\">\n            <span style=\"color: #F44336\">{{quizSummary.score}}%</span>\n          </div>\n        </div>\n        <div *ngFor=\"let answer of correctAnswers; let i = index\">\n          <div *ngIf=\"selectedAnswers[i].answerId !== answer.answerId\">\n\n            <mat-list>\n              <div>\n                <h3>Question:</h3>\n                <p>{{answer.questionContent}}</p>\n              </div>\n            </mat-list>\n\n            <h3>Answers:</h3>\n            <p style=\"color: #F44336\"><mat-icon>clear</mat-icon> Selected answer: {{ selectedAnswers[i].answerContent }}</p>\n            <p style=\"color: #4CAF50\"><mat-icon>done</mat-icon> Correct answer: {{ answer.answerContent }}</p>\n          </div>\n        </div>\n      </mat-card-content>\n      <mat-card-actions>\n        <button mat-raised-button matDialogClose=\"confirm\" color=\"accent\" style=\"width: 100%\">Confirm</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n</mat-dialog-content>\n"
 
 /***/ }),
 
@@ -382,7 +382,7 @@ module.exports = "<mat-dialog-content>\n  <div>\n    <mat-card class=\"mat-eleva
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\n  <mat-card-content *ngIf=\"quiz\">\n    <h2>{{quiz.name}} Quiz</h2>\n    <form #quizForm=\"ngForm\" (ngSubmit)=\"onSubmit(quizForm.value); quizForm.reset();\">\n      <div *ngFor=\"let question of quiz.question\">\n        <div>\n          <mat-card class=\"mat-elevation-z8\">\n            <mat-card-content>\n              <div fxLayout=\"column\">\n                <mat-list>\n                  <div fxLayout=\"row\">\n                    <h3>Question {{question.content}}</h3>\n                  </div>\n                </mat-list>\n                <br />\n\n                <div fxLayout=\"row\" ngModelGroup=\"quiz\">\n                  <label for=\"Answers:\">Select One</label>\n                  <div fxLayout=\"column\">\n                    <div *ngFor=\"let answer of question.answer\">\n                      <input [(ngModel)]=\"qs[question._id]\"\n                      [checked]=\"qs[question._id]\"\n                      value=\"{{answer._id}};{{answer.content}};{{answer.correct}}\"\n                      name=\"question{{question._id}}\"\n                      type=\"radio\" />\n                      {{answer.content}}\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </mat-card-content>\n          </mat-card>\n        </div>\n      </div>\n      <mat-card-actions>\n        <button type=\"submit\" fxFlex mat-raised-button>Submit</button>\n      </mat-card-actions>\n    </form>\n  </mat-card-content>\n\n</mat-card>\n\n\n"
+module.exports = "<mat-card>\n  <mat-card-content *ngIf=\"quiz\">\n    <h2 style=\"text-align: center;\">{{quiz.name}} Quiz</h2>\n    <form #quizForm=\"ngForm\" (ngSubmit)=\"onSubmit(quizForm.value); quizForm.reset();\">\n      <div *ngFor=\"let question of quiz.question\">\n        <div>\n          <mat-card class=\"mat-elevation-z8\" style=\"width: 80%;\">\n            <mat-card-content>\n              <div fxLayout=\"column\">\n                <mat-list>\n                  <div fxLayout=\"row\">\n                    <h3>Question {{question.content}}</h3>\n                  </div>\n                </mat-list>\n                <br />\n\n                <div fxLayout=\"row\" ngModelGroup=\"quiz\">\n                  <div fxLayout=\"column\" fxLayoutGap=\"10px\">\n                    <div *ngFor=\"let answer of question.answer\">\n                      <input [(ngModel)]=\"qs[question._id]\"\n                      [checked]=\"qs[question._id]\"\n                      value=\"{{answer._id}};{{answer.content}};{{answer.correct}}\"\n                      name=\"q{{question._id}}\"\n                      type=\"radio\" />\n                      {{answer.content}}\n                      <br />\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </mat-card-content>\n          </mat-card>\n        </div>\n      </div>\n      <mat-card-actions>\n        <button type=\"submit\" fxFlex mat-raised-button color=\"accent\">Submit</button>\n      </mat-card-actions>\n    </form>\n  </mat-card-content>\n\n</mat-card>\n\n\n"
 
 /***/ }),
 
@@ -393,7 +393,7 @@ module.exports = "<mat-card>\n  <mat-card-content *ngIf=\"quiz\">\n    <h2>{{qui
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n\n  <header>\n\n  </header>\n\n  <main>\n      <mat-toolbar class=\"menu\" role=\"header\" color=\"primary\">\n          <mat-toolbar-row>\n            <button mat-button class=\"toolbar__icon-button mat-button\">\n              <a routerLink=\"/dashboard\" class=\"nav-link\"><mat-icon>home</mat-icon> Dashboard</a>\n            </button>\n\n            <button mat-button class=\"toolbar__icon-button mat-button\">\n              <a routerLink=\"/dashboard/cumulative-summary\" class=\"nav-link\"><mat-icon>assessment</mat-icon> Cumulative Summary</a>\n            </button>\n\n            <div fxFlex></div>\n\n            <button mat-button class=\"toolbar__icon-button mat-button\">\n              <a (click)=\"logout()\" class=\"nav-link\"><mat-icon>person</mat-icon> Logout</a>\n            </button>\n          </mat-toolbar-row>\n        </mat-toolbar>\n    <router-outlet></router-outlet>\n  </main>\n</div>\n\n"
+module.exports = "<div>\n\n  <header>\n\n  </header>\n\n  <main>\n      <mat-toolbar class=\"menu\" role=\"header\" color=\"accent\">\n          <mat-toolbar-row>\n            <button mat-button class=\"toolbar__icon-button mat-button\">\n              <a routerLink=\"/dashboard\" class=\"nav-link\"><mat-icon>home</mat-icon> Dashboard</a>\n            </button>\n\n            <button mat-button class=\"toolbar__icon-button mat-button\">\n              <a routerLink=\"/dashboard/cumulative-summary\" class=\"nav-link\"><mat-icon>assessment</mat-icon> Cumulative Summary</a>\n            </button>\n\n            <div fxFlex></div>\n\n            <button mat-button class=\"toolbar__icon-button mat-button\">\n              <a (click)=\"logout()\" class=\"nav-link\"><mat-icon>person</mat-icon> Logout</a>\n            </button>\n          </mat-toolbar-row>\n        </mat-toolbar>\n    <router-outlet></router-outlet>\n  </main>\n</div>\n\n"
 
 /***/ }),
 
@@ -570,14 +570,15 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_15__["MatListModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_15__["MatDialogModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_15__["MatRadioModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_15__["MatTableModule"]
+            _angular_material__WEBPACK_IMPORTED_MODULE_15__["MatTableModule"],
         ],
         providers: [{
                 provide: _angular_common__WEBPACK_IMPORTED_MODULE_17__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_17__["HashLocationStrategy"]
             },
             _shared_auth_guard__WEBPACK_IMPORTED_MODULE_18__["AuthGuard"], ngx_cookie_service__WEBPACK_IMPORTED_MODULE_19__["CookieService"]
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
+        entryComponents: [_pages_quiz_result_dialog_quiz_result_dialog_component__WEBPACK_IMPORTED_MODULE_23__["QuizResultDialogComponent"]]
     })
 ], AppModule);
 
@@ -695,7 +696,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2N1bXVsYXRpdmUtc3VtbWFyeS9jdW11bGF0aXZlLXN1bW1hcnkuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "th, td {\n  text-align: center;\n  padding: 10px auto;\n  width: 300px;\n  vertical-align: middle;\n}\n\nth {\n  background-color: #b0bec5;\n}\n\ntr {\n  height: 25px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvY3VtdWxhdGl2ZS1zdW1tYXJ5L2N1bXVsYXRpdmUtc3VtbWFyeS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UsWUFBWTtBQUNkIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvY3VtdWxhdGl2ZS1zdW1tYXJ5L2N1bXVsYXRpdmUtc3VtbWFyeS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGgsIHRkIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBwYWRkaW5nOiAxMHB4IGF1dG87XG4gIHdpZHRoOiAzMDBweDtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cblxudGgge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjYjBiZWM1O1xufVxuXG50ciB7XG4gIGhlaWdodDogMjVweDtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -711,6 +712,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CumulativeSummaryComponent", function() { return CumulativeSummaryComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 
 /*
 ============================================
@@ -722,11 +724,21 @@ __webpack_require__.r(__webpack_exports__);
 ;===========================================
 */
 
+
 let CumulativeSummaryComponent = class CumulativeSummaryComponent {
-    constructor() { }
+    constructor(http) {
+        this.http = http;
+        this.http.get('/api/summary/').subscribe(res => {
+            console.log(res);
+            this.summaries = (res);
+        });
+    }
     ngOnInit() {
     }
 };
+CumulativeSummaryComponent.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
 CumulativeSummaryComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-cumulative-summary',
@@ -803,7 +815,7 @@ DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "mat-card {\n  width: 30% !important;\n}\n\nbutton {\n  width: 100%;\n}\n\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvbG9naW4vbG9naW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHFCQUFxQjtBQUN2Qjs7QUFFQTtFQUNFLFdBQVc7QUFDYiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtY2FyZCB7XG4gIHdpZHRoOiAzMCUgIWltcG9ydGFudDtcbn1cblxuYnV0dG9uIHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cblxuXG4iXX0= */"
 
 /***/ }),
 
@@ -1032,7 +1044,7 @@ PresentationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3F1aXotcmVzdWx0LWRpYWxvZy9xdWl6LXJlc3VsdC1kaWFsb2cuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "span {\n  font-size: 38px;\n  font-weight: bold;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvcXVpei1yZXN1bHQtZGlhbG9nL3F1aXotcmVzdWx0LWRpYWxvZy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBZTtFQUNmLGlCQUFpQjtBQUNuQiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3F1aXotcmVzdWx0LWRpYWxvZy9xdWl6LXJlc3VsdC1kaWFsb2cuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbInNwYW4ge1xuICBmb250LXNpemU6IDM4cHg7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1059,7 +1071,7 @@ let QuizResultDialogComponent = class QuizResultDialogComponent {
         this.dialogRef = dialogRef;
         this.cookieService = cookieService;
         this.quizSummary = data.quizSummary;
-        console.log(data);
+        console.log(this.quizSummary);
         this.correctAnswers = this.quizSummary.correctAnswers;
         this.selectedAnswers = this.quizSummary.selectedAnswers;
         this.employeeId = this.cookieService.get('employeeId');
@@ -1072,6 +1084,9 @@ QuizResultDialogComponent.ctorParameters = () => [
     { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"],] }] },
     { type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_3__["CookieService"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], QuizResultDialogComponent.prototype, "quizResults", void 0);
 QuizResultDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-quiz-result-dialog',
@@ -1136,6 +1151,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/*export interface DialogData {
+  quizSummary: any;
+}*/
 let QuizComponent = class QuizComponent {
     constructor(route, http, cookieService, dialog, location, router, fb) {
         this.route = route;
@@ -1146,7 +1164,7 @@ let QuizComponent = class QuizComponent {
         this.router = router;
         this.fb = fb;
         this.qs = [];
-        this.question = [];
+        this.q = [];
         this.quizSummary = [];
         this.quizId = route.snapshot.paramMap.get('id');
         this.employeeId = this.cookieService.get('employeeId');
@@ -1170,8 +1188,9 @@ let QuizComponent = class QuizComponent {
         let correctRunningTotal = 0;
         let selectedAnswerIds = [];
         let selectedCorrect = [];
+        let selectedContent = [];
         // Form data
-        this.quizResults = form;
+        this.quizResults = form.quiz;
         this.quizResults['employeeId'] = this.employeeId;
         this.quizResults['quizId'] = this.quizId;
         // Save results to database
@@ -1188,8 +1207,10 @@ let QuizComponent = class QuizComponent {
         for (const prop in this.quizResults) {
             if (this.quizResults.hasOwnProperty(prop)) {
                 if (prop !== 'employeeId' && prop !== 'quizId') {
+                    console.log(this.quizResults[prop]);
                     selectedAnswerIds.push(this.quizResults[prop].split(';')[0]);
-                    selectedCorrect.push(this.quizResults[prop].split(';')[1]);
+                    selectedContent.push(this.quizResults[prop].split(';')[1]);
+                    selectedCorrect.push(this.quizResults[prop].split(';')[2]);
                 }
             }
         }
@@ -1200,6 +1221,7 @@ let QuizComponent = class QuizComponent {
             }
         }
         quizScore = correctRunningTotal * pointsPerQuestion;
+        console.log(quizScore);
         //Create the QuizSummary object for the dialog
         let correctAnswers = [];
         let selectedAnswers = [];
@@ -1232,6 +1254,7 @@ let QuizComponent = class QuizComponent {
         this.quizSummary['score'] = quizScore;
         this.quizSummary['correctAnswers'] = correctAnswers;
         this.quizSummary['selectedAnswers'] = selectedAnswers;
+        console.log(this.quizSummary);
         // Create the cumulative summary object and insert into the database
         this.cumulativeSummaryObject = {
             employeeId: this.employeeId,
@@ -1258,7 +1281,7 @@ let QuizComponent = class QuizComponent {
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result === 'confirm') {
-                this.router.navigate(['/']);
+                this.router.navigate(['/dashboard']);
             }
         });
     }
@@ -1291,7 +1314,7 @@ QuizComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC9hdXRoLWxheW91dC9hdXRoLWxheW91dC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "a {\n  color: #fff;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2hhcmVkL2F1dGgtbGF5b3V0L2F1dGgtbGF5b3V0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxXQUFXO0FBQ2IiLCJmaWxlIjoic3JjL2FwcC9zaGFyZWQvYXV0aC1sYXlvdXQvYXV0aC1sYXlvdXQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImEge1xuICBjb2xvcjogI2ZmZjtcbn1cbiJdfQ== */"
 
 /***/ }),
 

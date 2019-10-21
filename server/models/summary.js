@@ -11,7 +11,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let resultsSchema = new Schema({
+let summarySchema = new Schema({
   employeeId: String,
   quizId: String,
   quizName: String,
@@ -19,5 +19,5 @@ let resultsSchema = new Schema({
   score: String
 }, {collection: 'summaries'});
 
-module.exports = mongoose.model('Summary', resultsSchema);
+module.exports = mongoose.model('Summary', summarySchema);
 

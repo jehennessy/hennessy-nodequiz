@@ -1,29 +1,25 @@
 <mat-dialog-content>
   <div>
     <mat-card class="mat-elevation-z0">
-      <mat-card-title>
-        {{quiz.Summary.quizName}}
-      </mat-card-title>
-      <mat-card-subtitle>
-        Quiz Results for {{employeeId}}
-      </mat-card-subtitle>
+      <mat-card-title>{{quizSummary.quizName}}</mat-card-title>
+      <mat-card-subtitle>Quiz taken by {{employeeId}}</mat-card-subtitle>
       <mat-card-content>
         <div>
           <h3>Score</h3>
           <div *ngIf="quizSummary.score > 90">
-            <span>{{quizSummary.score}}%</span>
+            <span style="color: #4CAF50">{{quizSummary.score}}%</span>
           </div>
           <div *ngIf="quizSummary.score < 90 && quizSummary.score >= 80">
-            <span>{{quizSummary.score}}%</span>
+            <span style="color: #8BC34A">{{quizSummary.score}}%</span>
           </div>
           <div *ngIf="quizSummary.score < 80 && quizSummary.score >= 70">
-            <span>{{quizSummary.score}}%</span>
+            <span style="color: #FFEB3B">{{quizSummary.score}}%</span>
           </div>
           <div *ngIf="quizSummary.score < 70 && quizSummary.score >= 60">
-            <span>{{quizSummary.score}}%</span>
+            <span style="color: #FF9800">{{quizSummary.score}}%</span>
           </div>
           <div *ngIf="quizSummary.score < 60">
-            <span>{{quizSummary.score}}%</span>
+            <span style="color: #F44336">{{quizSummary.score}}%</span>
           </div>
         </div>
         <div *ngFor="let answer of correctAnswers; let i = index">
@@ -32,18 +28,18 @@
             <mat-list>
               <div>
                 <h3>Question:</h3>
-                <p>{{answer.questionContent</p>
+                <p>{{answer.questionContent}}</p>
               </div>
             </mat-list>
 
             <h3>Answers:</h3>
-            <p><mat-icon>clear</mat-icon> Selected answer: {{ selectedAnswers[i].text }}</p>
-            <p><mat-icon>done</mat-icon> Correct answer: {{ answer.text }}</p>
+            <p style="color: #F44336"><mat-icon>clear</mat-icon> Selected answer: {{ selectedAnswers[i].answerContent }}</p>
+            <p style="color: #4CAF50"><mat-icon>done</mat-icon> Correct answer: {{ answer.answerContent }}</p>
           </div>
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button matDialogClose="confirm">Confirm</button>
+        <button mat-raised-button matDialogClose="confirm" color="accent" style="width: 100%">Confirm</button>
       </mat-card-actions>
     </mat-card>
   </div>

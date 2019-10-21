@@ -1,7 +1,7 @@
 <div>
     <mat-card class="mat-elevation-z8">
       <mat-card-header>
-        <mat-card-title>
+        <mat-card-title style="text-align: center;">
           {{quizName}}
         </mat-card-title>
       </mat-card-header>
@@ -9,13 +9,13 @@
         <p-carousel [value]="slideImages" numVisible="1">
           <ng-template let-item pTemplate="item">
             <div>
-                <img src="../../../assets/slides/{{presentation}}{{item.image}}">
+                <img src="../../../assets/slides/{{presentation}}{{item.image}}" style="margin: auto; display: block;">
             </div>
           </ng-template>
         </p-carousel>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button color="accent" (click)="takeQuiz(presentationId)">Take Quiz</button>
+        <button mat-flat-button color="accent" (click)="takeQuiz(presentationId)" style="width: 100%; margin: auto;">Take Quiz</button>
       </mat-card-actions>
     </mat-card>
   </div>

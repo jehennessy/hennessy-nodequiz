@@ -1,1 +1,16 @@
 @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+mat-card {
+  width: 60%;
+  margin: 5em auto;
+  display: block;
+  padding: 2em !important;
+}
+
+h1 {
+  text-align: center;
+}
+
+mat-card-actions {
+  margin: auto !important;
+}

@@ -1,1 +1,21 @@
-<p>cumulative-summary works!</p>
+<div>
+  <mat-card>
+    <mat-card-title style="text-align: center;">
+      Cumulative Summary
+    </mat-card-title>
+    <table *ngIf="summaries" style="width: 90%; margin: auto; display: block;">
+      <tr color="accent">
+        <th>Employee Id</th>
+        <th>Quiz Name</th>
+        <th>Date Taken</th>
+        <th>Score</th>
+      </tr>
+      <tr *ngFor="let summary of summaries">
+        <td>{{summary.employeeId}}</td>
+        <td>{{summary.quizName}}</td>
+        <td>{{summary.dateTaken}}</td>
+        <td>{{summary.score}}</td>
+      </tr>
+    </table>
+  </mat-card>
+</div>

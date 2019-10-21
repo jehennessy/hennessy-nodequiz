@@ -1,3 +1,12 @@
+/*
+============================================
+; Title:  base-layout.component.ts
+; Author: Professor Krasso
+; Date:   20 October 2019
+; Modified By: Jordan Hennessy
+; Description: NodeQuiz Application
+;===========================================
+*/
 import { Component, OnInit } from '@angular/core';
 
 @Component({

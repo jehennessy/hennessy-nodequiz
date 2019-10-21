@@ -17,6 +17,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { Location } from '@angular/common';
 import * as moment from 'moment';
 
+/*export interface DialogData {
+  quizSummary: any;
+}*/
 
 @Component({
   selector: 'app-quiz',
@@ -30,7 +33,7 @@ export class QuizComponent implements OnInit {
   quiz: any;
   quizResults: any;
   qs: any = [];
-  question: any = [];
+  q: any = [];
   quizSummary: any = [];
   cumulativeSummaryObject: object;
   quizScore: any;
@@ -75,12 +78,13 @@ export class QuizComponent implements OnInit {
     let correctRunningTotal = 0;
     let selectedAnswerIds = [];
     let selectedCorrect = [];
+    let selectedContent = [];
 
 
 
 
     // Form data
-    this.quizResults = form;
+    this.quizResults = form.quiz;
     this.quizResults['employeeId'] = this.employeeId;
     this.quizResults['quizId'] = this.quizId;
 
@@ -102,11 +106,15 @@ export class QuizComponent implements OnInit {
     for (const prop in this.quizResults) {
       if (this.quizResults.hasOwnProperty(prop)) {
         if(prop !== 'employeeId' && prop !== 'quizId') {
+          console.log(this.quizResults[prop]);
+
           selectedAnswerIds.push(this.quizResults[prop].split(';')[0]);
-          selectedCorrect.push(this.quizResults[prop].split(';')[1]);
+          selectedContent.push(this.quizResults[prop].split(';')[1]);
+          selectedCorrect.push(this.quizResults[prop].split(';')[2]);
         }
       }
     }
+
 
     // determine the quiz score
     for (let x = 0; x < selectedCorrect.length; x++) {
@@ -115,6 +123,8 @@ export class QuizComponent implements OnInit {
       }
     }
     quizScore = correctRunningTotal * pointsPerQuestion;
+
+    console.log(quizScore);
 
     //Create the QuizSummary object for the dialog
     let correctAnswers = [];
@@ -151,6 +161,8 @@ export class QuizComponent implements OnInit {
     this.quizSummary['correctAnswers'] = correctAnswers;
     this.quizSummary['selectedAnswers'] = selectedAnswers;
 
+    console.log(this.quizSummary);
+
     // Create the cumulative summary object and insert into the database
     this.cumulativeSummaryObject = {
       employeeId: this.employeeId,
@@ -181,7 +193,7 @@ export class QuizComponent implements OnInit {
 
    dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
       }
     });
 

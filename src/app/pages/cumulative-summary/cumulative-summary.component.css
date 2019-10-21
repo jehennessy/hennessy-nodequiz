@@ -1,0 +1,14 @@
+th, td {
+  text-align: center;
+  padding: 10px auto;
+  width: 300px;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #b0bec5;
+}
+
+tr {
+  height: 25px;
+}

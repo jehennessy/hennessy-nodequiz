@@ -1,6 +1,17 @@
-import { Component, OnInit, Inject } from '@angular/core';
+/*
+============================================
+; Title:  quiz-result-dialog.component.ts
+; Author: Professor Krasso
+; Date:   20 October 2019
+; Modified By: Jordan Hennessy
+; Description: NodeQuiz Application
+;===========================================
+*/
+
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CookieService } from 'ngx-cookie-service';
+import { QuizComponent } from '../quiz/quiz.component';
 
 @Component({
   selector: 'app-quiz-result-dialog',
@@ -14,13 +25,18 @@ export class QuizResultDialogComponent implements OnInit {
   selectedAnswers: any;
   employeeId: any;
 
-  constructor(private dialogRef: MatDialogRef<QuizResultDialogComponent>, @Inject(MAT_DIALOG_DATA) data, private cookieService: CookieService) {
+  constructor(private dialogRef: MatDialogRef<QuizResultDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) data,
+    private cookieService: CookieService) {
+
     this.quizSummary = data.quizSummary;
-    console.log(data);
+    console.log(this.quizSummary);
     this.correctAnswers = this.quizSummary.correctAnswers;
     this.selectedAnswers = this.quizSummary.selectedAnswers;
     this.employeeId = this.cookieService.get('employeeId');
   }
+
+  @Input() public quizResults;
 
   ngOnInit() {
   }
